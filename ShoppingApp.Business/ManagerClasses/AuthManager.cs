@@ -95,7 +95,8 @@ namespace ShoppingApp.Business.ManagerClasses
                 var result = await _userManager.CreateAsync(userToCreate, userReg.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(userToCreate, "NormalUser");
+                    string defaultUser = _config.GetSection("AppSettings:DefaultUser").Value;
+                    await _userManager.AddToRoleAsync(userToCreate, defaultUser);
                     _logger.LogInformation($"User Created Succeffully {userToCreate.UserName}");
                     return true;
                 }
