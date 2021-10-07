@@ -24,7 +24,7 @@ namespace ShoppingApp.Data.Entities
         [Required]
         [MaxLength(50)]
         public string Color { get; set; }
-        [Required]
+        [ForeignKey("User")]
         public int AddedUserId { get; set; }
         [MaxLength(500)]
         public string Image { get; set; }
@@ -42,6 +42,8 @@ namespace ShoppingApp.Data.Entities
         [ForeignKey("Manufacturer")]
         public int Manufacturer_id { get; set; }
         public Manufacturer Manufacturer { get; set; }
+
+        public User AddedUser { get; set; }
 
     }
 }

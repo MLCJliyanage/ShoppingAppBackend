@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingApp.Data.Data;
 
 namespace ShoppingApp.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211007050343_fkey_added")]
+    partial class fkey_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,7 +353,7 @@ namespace ShoppingApp.Data.Migrations
             modelBuilder.Entity("ShoppingApp.Data.Entities.Product", b =>
                 {
                     b.HasOne("ShoppingApp.Data.Entities.User", "AddedUser")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("AddedUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -411,8 +413,6 @@ namespace ShoppingApp.Data.Migrations
 
             modelBuilder.Entity("ShoppingApp.Data.Entities.User", b =>
                 {
-                    b.Navigation("Products");
-
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

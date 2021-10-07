@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingApp.Data.Data;
 
 namespace ShoppingApp.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211007053845_delete-restrict2")]
+    partial class deleterestrict2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,6 +172,12 @@ namespace ShoppingApp.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int>("ManufacturerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ManufacturerId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("Manufacturer_id")
                         .HasColumnType("int");
 
@@ -189,6 +197,8 @@ namespace ShoppingApp.Data.Migrations
                     b.HasIndex("AddedUserId");
 
                     b.HasIndex("Category_id");
+
+                    b.HasIndex("ManufacturerId");
 
                     b.HasIndex("Manufacturer_id");
 
@@ -362,8 +372,14 @@ namespace ShoppingApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShoppingApp.Data.Entities.Manufacturer", "Manufacturer")
+                    b.HasOne("ShoppingApp.Data.Entities.Manufacturer", null)
                         .WithMany("Products")
+                        .HasForeignKey("ManufacturerId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("ShoppingApp.Data.Entities.Manufacturer", "Manufacturer")
+                        .WithMany()
                         .HasForeignKey("Manufacturer_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

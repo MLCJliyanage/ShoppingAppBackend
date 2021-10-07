@@ -4,11 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.Business.ManagerClasses.Interfaces;
 using ShoppingApp.Common;
 using ShoppingApp.Common.Dtos;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ShoppingApp.API.Controllers

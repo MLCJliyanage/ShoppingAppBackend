@@ -40,7 +40,7 @@ namespace ShoppingApp.Data.Data
                 .WithMany(r => r.UserRoles)
                 .HasForeignKey(ur => ur.UserId)
                 .IsRequired();
-            });
+            });     
         }
     }
 }

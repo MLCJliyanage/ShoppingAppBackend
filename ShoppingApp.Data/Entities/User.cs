@@ -13,5 +13,6 @@ namespace ShoppingApp.Data.Entities
         public DateTime? CreatedDateTime { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
+        public List<Product> Products { get; set; }
     }
 }
